@@ -156,7 +156,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   nudged: 0
-  amplitude: 1
+  difficultyAmp: 0
+  accelAmp: 1
+  minAccelDelta: 0.4
   modMaxRotation: 40
 --- !u!114 &114572077482742154
 MonoBehaviour:
@@ -170,7 +172,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   nudged: 0
-  amplitude: 1
+  difficultyAmp: 1
+  accelAmp: 40
+  minAccelDelta: 0.2
   modMaxRotation: 40
 --- !u!212 &212530946229065516
 SpriteRenderer:
