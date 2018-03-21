@@ -4,8 +4,6 @@ using UnityEngine;
 
 public class GameSettings : MonoBehaviour {
 
-	public static GameSettings instance = null;
-	
 	[Range (0f, 1f)]
 	public float restZone = 0.1f;
 
@@ -25,5 +23,11 @@ public class GameSettings : MonoBehaviour {
 	public float modMaxRotation = 40f;
 
 	[Range (0f, 2f)]
-	public float nudgeTime = 0.5f;
+	public float nudgeDuration = 0.5f;
+
+	[Range (0f, 1000f)]
+	public float nudgeResistance = 100f;
+
+	[Range (0f, 5f)]
+	public float nudgeInterval = 3f;
 }

@@ -55,6 +55,8 @@ MonoBehaviour:
   deathZone: 0.15
   difficultyAmp: 1
   accelAmp: 3
-  minAccelDelta: 0.4
+  minAccelDelta: 0.2
   modMaxRotation: 40
-  nudgeTime: 0.5
+  nudgeDuration: 0.5
+  nudgeResistance: 100
+  nudgeInterval: 3

@@ -6,6 +6,26 @@ public static class UsefulFunctions {
 
 	private static Camera camera;
 
+	/// Returns true if value is between min and max and false if it does not.
+	public static bool Between (int min, int max, int value, bool inclusive = false) {
+		return Between ((float)min, (float)max, (float)value, inclusive);
+	}
+
+	/// Returns true if value is between min and max and false if it does not.
+	public static bool Between (float min, float max, float value, bool inclusive = false) {
+		if (inclusive) {
+			return (
+				(min <= value) &&
+				(value <= max)
+			);
+		} else {
+			return (
+				(min < value) &&
+				(value < max)
+			);
+		}
+	}
+
 	/// <summary>
 	/// Gets the game object position.
 	/// </summary>
@@ -29,27 +49,15 @@ public static class UsefulFunctions {
 	/// </summary>
 	/// <returns>The game object position after setting 0 as the center of the screen.</returns>
 	/// <param name="thing">GameObject.</param>
-	public static float GetGameObjectPositionFromZero (GameObject thing) {
+	public static float GetGameObjectPositionFromCenter (GameObject thing) {
 		return GetGameObjectPosition (thing)[0] - 0.5f;
 	}
 
-	/// Returns true if value is between min and max and false if it does not.
-	public static bool Between (int min, int max, int value, bool inclusive = false) {
-		return Between ((float)min, (float)max, (float)value, inclusive);
-	}
-
-	/// Returns true if value is between min and max and false if it does not.
-	public static bool Between (float min, float max, float value, bool inclusive = false) {
-		if (inclusive) {
-			return (
-			    (min <= value) &&
-			    (value <= max)
-			);
-		} else {
-			return (
-			    (min < value) &&
-			    (value < max)
-			);
-		}
+	/// <summary>
+	/// Returns a random boolean.
+	/// </summary>
+	/// <returns><c>True</c> or <c>false</c>.</returns>
+	public static bool GetRandomBoolean () {
+		return (Random.value > 0.5f);
 	}
 }

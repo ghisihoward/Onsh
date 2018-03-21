@@ -8,6 +8,8 @@ public class GameManager : MonoBehaviour {
 	private GameSettings gameSettingsData;
 	private Player playerScript;
 
+	private float innerTimer, totalTimer = 0;
+
 	// Use this for initialization
 	void Start () {
 		player = GameObject.Find ("Player");
@@ -22,14 +24,13 @@ public class GameManager : MonoBehaviour {
 		// Checks if player is on center
 		// Use World to Viewport Point (Close to 0,5);
 		// if it is, nudges the player on a random direction on random timespaces
-		//if (UsefulFunctions.Between (
-		//	    0.5f - gameSettingsData.deathZone, 
-		//	    0.5f + gameSettingsData.deathZone, 
-		//		UsefulFunctions.GetGameObjectPosition (player) [0], 
-		//	    true
-		//    )) {
-		//	playerScript.NudgePlayerRandomly ();
-		//}
-	}
 
+		innerTimer += Time.deltaTime;
+		totalTimer += Time.deltaTime;
+
+		if (innerTimer >= gameSettingsData.nudgeInterval) {
+			playerScript.ReceiveNudge (1, UsefulFunctions.GetRandomBoolean ());
+			innerTimer = 0;
+		}
+	}
 }
