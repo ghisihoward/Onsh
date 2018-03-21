@@ -19,7 +19,6 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4453358566092060}
-  - component: {fileID: 114334109873502324}
   - component: {fileID: 114515739864972624}
   m_Layer: 0
   m_Name: GameSettings
@@ -41,17 +40,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &114334109873502324
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1915969826343236}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4d14c18c7ff47ef42925db759534a830, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &114515739864972624
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -64,8 +52,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   restZone: 0.1
-  deathZone: 0.2
+  deathZone: 0.15
   difficultyAmp: 1
-  accelAmp: 92
+  accelAmp: 3
   minAccelDelta: 0.4
-  modMaxRotation: 90
+  modMaxRotation: 40
+  nudgeTime: 0.5
