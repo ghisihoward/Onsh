@@ -3,15 +3,13 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Player : MonoBehaviour {
-	
-	public GameObject objetoAtivado, objetoDesativado;
 
-	private GameObject playerSprite, gameSettings;
-	private GameSettings gameSettingsData;
+	private GameObject playerSprite, settingsObject;
+	private GameSettings settings;
 
 	private bool nudged;
 
-	private float playerX, playAreaLength;
+	private float playerX, sideLength, marginLeft, marginRight;
 	private float speedDelta, rotationDelta;
 	private float totalSpeed, finalSpeed = 0f;
 	private float nudgeSpeed, nudgeCounter = 0f;
@@ -20,18 +18,21 @@ public class Player : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		playerSprite = GameObject.Find ("PlayerSprite");
-		gameSettings = GameObject.Find ("GameSettings");
+		settingsObject = GameObject.Find ("GameSettings");
+		settings = settingsObject.GetComponent<GameSettings> ();
 
-		gameSettingsData = gameSettings.GetComponent<GameSettings> ();
-		playAreaLength = 0.5f - gameSettingsData.deathZone - gameSettingsData.restZone;
+		marginLeft = settings.deathZone - 0.5f;
+		marginRight = 0.5f - settings.deathZone;
+		sideLength = 0.5f - settings.deathZone - settings.restZone;
 	}
 	
 	// Update is called once per frame
 	void Update () {
-		playerX = UsefulFunctions.GetGameObjectPositionFromCenter (this.gameObject);
+		playerX = UsefulFunctions.GetGameObjectXFromCenter (this.gameObject);
 
-		if (gameSettingsData.deathZone - 0.5f >= playerX || playerX >= 0.5f - gameSettingsData.deathZone)
+		if (!UsefulFunctions.Between (marginLeft, marginRight, playerX)) {
 			return;
+		}
 
 		this.BalancePlayer ();
 		this.RotatePlayer ();
@@ -48,8 +49,8 @@ public class Player : MonoBehaviour {
 		// (-0.1) || (0.1) == 1 for minAccelDelta = 0.4;
 		if (playerX != 0f) {
 			speedDelta = (
-				(60f * playerX * playerX * gameSettingsData.accelAmp) +
-				gameSettingsData.minAccelDelta
+			    (60f * playerX * playerX * settings.accelAmp) +
+			    settings.minAccelDelta
 			);
 		} else {
 			speedDelta = 0f;
@@ -59,24 +60,24 @@ public class Player : MonoBehaviour {
 			speedDelta *= -1;
 
 		// Applies both speed and rotation to the GameObject and Sprite respectively.
-		totalSpeed = gameSettingsData.difficultyAmp * speedDelta;
+		totalSpeed = settings.difficultyAmp * speedDelta;
 		finalSpeed = totalSpeed * Time.deltaTime;
 		this.transform.Translate (finalSpeed, 0, 0);
 	}
 
 	void RotatePlayer () {
 		// Rotate if position outside set boundaries.
-		if (UsefulFunctions.Between (gameSettingsData.deathZone - 0.5f, -gameSettingsData.restZone, playerX)) {
+		if (UsefulFunctions.Between (marginLeft, -settings.restZone, playerX)) {
 			rotationDelta = 1 - (
-				(0.5f + playerX - gameSettingsData.deathZone) / playAreaLength
+			    (0.5f + playerX - settings.deathZone) / sideLength
 			);
-		} else if (UsefulFunctions.Between (gameSettingsData.restZone, 0.5f - gameSettingsData.deathZone, playerX)) {
-			rotationDelta = -(playerX - gameSettingsData.restZone) / playAreaLength;
+		} else if (UsefulFunctions.Between (settings.restZone, marginRight, playerX)) {
+			rotationDelta = -(playerX - settings.restZone) / sideLength;
 		} else {
 			rotationDelta = 0;
 		}
 
-		newRotation = gameSettingsData.modMaxRotation * rotationDelta;
+		newRotation = settings.modMaxRotation * rotationDelta;
 		playerSprite.transform.eulerAngles = new Vector3 (0, 0, newRotation);
 	}
 
@@ -84,18 +85,18 @@ public class Player : MonoBehaviour {
 		this.transform.Translate (nudgeSpeed, 0, 0);
 		nudgeCounter += Time.deltaTime;
 
-		if (nudgeCounter >= gameSettingsData.nudgeDuration) {
+		if (nudgeCounter >= settings.nudgeDuration) {
 			nudgeCounter = 0;
 			nudged = false;
 		}
 	}
 
 	public void ReceiveNudge (float ammount, bool positive) {
-		if (nudged) 
+		if (nudged)
 			return;
 
 		nudged = true;
-		nudgeSpeed = ammount * gameSettingsData.difficultyAmp / gameSettingsData.nudgeResistance;
+		nudgeSpeed = ammount * settings.difficultyAmp / settings.nudgeResistance;
 
 		if (!positive)
 			nudgeSpeed *= -1;

@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour {
 
-	private GameObject player, gameSettings;
-	private GameSettings gameSettingsData;
+	private GameObject player, settingsObject;
+	private GameSettings settings;
 	private Player playerScript;
 
 	private float innerTimer, totalTimer = 0;
@@ -15,8 +15,8 @@ public class GameManager : MonoBehaviour {
 		player = GameObject.Find ("Player");
 		playerScript = player.GetComponent<Player> ();
 
-		gameSettings = GameObject.Find ("GameSettings");
-		gameSettingsData = gameSettings.GetComponent<GameSettings> ();
+		settingsObject = GameObject.Find ("GameSettings");
+		settings = settingsObject.GetComponent<GameSettings> ();
 	}
 	
 	// Update is called once per frame
@@ -28,7 +28,7 @@ public class GameManager : MonoBehaviour {
 		innerTimer += Time.deltaTime;
 		totalTimer += Time.deltaTime;
 
-		if (innerTimer >= gameSettingsData.nudgeInterval) {
+		if (innerTimer >= settings.nudgeInterval) {
 			playerScript.ReceiveNudge (1, UsefulFunctions.GetRandomBoolean ());
 			innerTimer = 0;
 		}

@@ -239,7 +239,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: db7848e3e6efd344987bb4e737dca503, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  nudged: 0
 --- !u!114 &114846675099602182
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -251,7 +250,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: db7848e3e6efd344987bb4e737dca503, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  nudged: 0
 --- !u!212 &212119373827152506
 SpriteRenderer:
   m_ObjectHideFlags: 1
