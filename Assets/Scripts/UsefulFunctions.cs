@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public static class UsefulFunctions {
+
+	public enum Directions { Left, Right };
 	
 	/// <summary>
 	/// Verifies if the specified int value belongs to the interval (min, max).

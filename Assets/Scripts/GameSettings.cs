@@ -30,4 +30,6 @@ public class GameSettings : MonoBehaviour {
 
 	[Range (0f, 5f)]
 	public float nudgeInterval = 3f;
+
+	public UsefulFunctions.Directions playerOriginalFacing = UsefulFunctions.Directions.Right;
 }

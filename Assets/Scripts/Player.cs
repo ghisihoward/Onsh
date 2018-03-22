@@ -15,11 +15,14 @@ public class Player : MonoBehaviour {
 	private float nudgeSpeed, nudgeCounter = 0f;
 	private float newRotation = 0f;
 
+	private Animator animator;
+
 	// Use this for initialization
 	void Start () {
 		playerSprite = GameObject.Find ("PlayerSprite");
 		settingsObject = GameObject.Find ("GameSettings");
 		settings = settingsObject.GetComponent<GameSettings> ();
+		animator = gameObject.GetComponentInChildren <Animator> ();
 
 		marginLeft = settings.deathZone - 0.5f;
 		marginRight = 0.5f - settings.deathZone;
@@ -31,6 +34,7 @@ public class Player : MonoBehaviour {
 		playerX = UsefulFunctions.GetGameObjectXFromCenter (this.gameObject);
 
 		if (!UsefulFunctions.Between (marginLeft, marginRight, playerX)) {
+			animator.enabled = false;
 			return;
 		}
 
@@ -63,6 +67,16 @@ public class Player : MonoBehaviour {
 		totalSpeed = settings.difficultyAmp * speedDelta;
 		finalSpeed = totalSpeed * Time.deltaTime;
 		this.transform.Translate (finalSpeed, 0, 0);
+
+		// If moving left, character has to face left.
+		if (
+			(totalSpeed > 0) && (settings.playerOriginalFacing != UsefulFunctions.Directions.Right) ||
+			(totalSpeed < 0) && (settings.playerOriginalFacing != UsefulFunctions.Directions.Left)) 
+		{
+			playerSprite.transform.localScale = new Vector3 (-1f, 1f, 1f);
+		} else {
+			playerSprite.transform.localScale = new Vector3 (1f, 1f, 1f);
+		}
 	}
 
 	void RotatePlayer () {

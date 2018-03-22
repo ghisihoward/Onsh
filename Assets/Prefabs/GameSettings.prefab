@@ -56,7 +56,8 @@ MonoBehaviour:
   difficultyAmp: 1
   accelAmp: 3
   minAccelDelta: 0.2
-  modMaxRotation: 40
+  modMaxRotation: 60
   nudgeDuration: 0.5
   nudgeResistance: 100
   nudgeInterval: 3
+  playerOriginalFacing: 1
