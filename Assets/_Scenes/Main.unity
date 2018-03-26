@@ -252,29 +252,11 @@ Prefab:
       propertyPath: m_Camera
       value: 
       objectReference: {fileID: 2071872843}
-    - target: {fileID: 224812776147770734, guid: aa6168d77f0343f44b2b51d557940f4f,
+    - target: {fileID: 114205636355420800, guid: aa6168d77f0343f44b2b51d557940f4f,
         type: 2}
-      propertyPath: m_AnchoredPosition.y
-      value: -41
-      objectReference: {fileID: 0}
-    - target: {fileID: 4356156794667140, guid: aa6168d77f0343f44b2b51d557940f4f, type: 2}
-      propertyPath: m_LocalPosition.x
+      propertyPath: m_MatchWidthOrHeight
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 4356156794667140, guid: aa6168d77f0343f44b2b51d557940f4f, type: 2}
-      propertyPath: m_LocalPosition.y
-      value: -25
-      objectReference: {fileID: 0}
-    - target: {fileID: 4356156794667140, guid: aa6168d77f0343f44b2b51d557940f4f, type: 2}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 212905238155031444, guid: aa6168d77f0343f44b2b51d557940f4f,
-        type: 2}
-      propertyPath: m_Sprite
-      value: 
-      objectReference: {fileID: 21300000, guid: a6bffae3fe5051047a605977b1dfd713,
-        type: 3}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: aa6168d77f0343f44b2b51d557940f4f, type: 2}
   m_IsPrefabParent: 0

@@ -21,16 +21,27 @@ public class GameManager : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		// Checks if player is on center
-		// Use World to Viewport Point (Close to 0,5);
-		// if it is, nudges the player on a random direction on random timespaces
-
 		innerTimer += Time.deltaTime;
 		totalTimer += Time.deltaTime;
 
 		if (innerTimer >= settings.nudgeInterval) {
+
+			// TODO
+			// This random nudge thing should be refactored later.
 			playerScript.ReceiveNudge (1, UsefulFunctions.GetRandomBoolean ());
 			innerTimer = 0;
 		}
+
+		// TODO
+		// Timer
+		// Wave System
+		// Game States (changes if player is on the deathzone)
+		// Menu
+	}
+
+	public void ReceiveDrag (UsefulFunctions.Directions direction){
+		// TODO
+		// Act on Drag
+		Debug.Log ("Drag Received " + direction.ToString ());
 	}
 }

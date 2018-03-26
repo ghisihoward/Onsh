@@ -49,11 +49,10 @@ public static class UsefulFunctions {
 	/// Simply put, 0.5 is the middle of the screen.</returns>
 	/// <param name="theObject">GameObject.</param>
 	public static Vector2 GetGameObjectPosition (GameObject theObject) {
-		Camera camera = GameObject.Find ("Main Camera").GetComponent<Camera> ();
 		return (
 		    new Vector2 (
-			    (float)camera.WorldToViewportPoint (theObject.transform.position).x,
-			    (float)camera.WorldToViewportPoint (theObject.transform.position).y
+				(float)Camera.main.WorldToViewportPoint (theObject.transform.position).x,
+				(float)Camera.main.WorldToViewportPoint (theObject.transform.position).y
 		    )
 		);
 	}
