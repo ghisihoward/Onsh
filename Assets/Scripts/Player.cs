@@ -7,12 +7,13 @@ public class Player : MonoBehaviour {
 	private GameObject playerSprite, settingsObject;
 	private GameSettings settings;
 
-	private bool nudged;
+	private bool nudged, dragged;
 
 	private float playerX, sideLength, marginLeft, marginRight;
 	private float speedDelta, rotationDelta;
 	private float totalSpeed, finalSpeed = 0f;
 	private float nudgeSpeed, nudgeCounter = 0f;
+	private float dragSpeed, dragCounter = 0f;
 	private float newRotation = 0f;
 
 	private Animator animator;
@@ -45,6 +46,11 @@ public class Player : MonoBehaviour {
 		if (nudged) {
 			this.NudgePlayer ();
 		}
+
+		// If dragged, move the player a set time.
+		if (dragged) {
+			this.DragPlayer();
+		}
 	}
 
 	void BalancePlayer () {
@@ -70,8 +76,8 @@ public class Player : MonoBehaviour {
 
 		// If moving left, character has to face left.
 		if (
-			(totalSpeed > 0) && (settings.playerOriginalFacing != UsefulFunctions.Directions.Right) ||
-			(totalSpeed < 0) && (settings.playerOriginalFacing != UsefulFunctions.Directions.Left)) 
+			(totalSpeed > 0) && (settings.playerOriginalFacing != UsefulFunctions.Direction.Right) ||
+			(totalSpeed < 0) && (settings.playerOriginalFacing != UsefulFunctions.Direction.Left)) 
 		{
 			playerSprite.transform.localScale = new Vector3 (-1f, 1f, 1f);
 		} else {
@@ -95,6 +101,17 @@ public class Player : MonoBehaviour {
 		playerSprite.transform.eulerAngles = new Vector3 (0, 0, newRotation);
 	}
 
+	public void ReceiveNudge (float ammount, UsefulFunctions.Direction direction) {
+		if (nudged)
+			return;
+
+		nudged = true;
+		nudgeSpeed = ammount * settings.difficultyAmp / settings.nudgeResistance;
+
+		if (direction == UsefulFunctions.Direction.Left)
+			nudgeSpeed *= -1;
+	}
+
 	void NudgePlayer () {
 		this.transform.Translate (nudgeSpeed, 0, 0);
 		nudgeCounter += Time.deltaTime;
@@ -105,14 +122,21 @@ public class Player : MonoBehaviour {
 		}
 	}
 
-	public void ReceiveNudge (float ammount, bool positive) {
-		if (nudged)
-			return;
+	public void ReceiveDrag (float ammount, UsefulFunctions.Direction direction) {
+		dragged = true;
+		dragSpeed = ammount * settings.accelAmp / settings.dragResistance;
 
-		nudged = true;
-		nudgeSpeed = ammount * settings.difficultyAmp / settings.nudgeResistance;
+		if (direction == UsefulFunctions.Direction.Left)
+			dragSpeed *= -1;
+	}
 
-		if (!positive)
-			nudgeSpeed *= -1;
+	void DragPlayer () {
+		this.transform.Translate (dragSpeed, 0, 0);
+		dragCounter += Time.deltaTime;
+
+		if (dragCounter >= settings.dragDuration) {
+			dragCounter = 0;
+			dragged = false;
+		}
 	}
 }

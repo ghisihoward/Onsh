@@ -4,7 +4,7 @@ using UnityEngine;
 
 public static class UsefulFunctions {
 
-	public enum Directions { Left, Right };
+	public enum Direction { Left, Right };
 	
 	/// <summary>
 	/// Verifies if the specified int value belongs to the interval (min, max).
@@ -81,5 +81,9 @@ public static class UsefulFunctions {
 	/// <returns><c>True</c> or <c>false</c>.</returns>
 	public static bool GetRandomBoolean () {
 		return (Random.value > 0.5f);
+	}
+
+	public static Direction GetRandomDirection () {
+		return  (Direction)Random.Range (0, 2);
 	}
 }

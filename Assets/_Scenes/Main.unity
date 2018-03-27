@@ -147,6 +147,11 @@ Prefab:
       propertyPath: m_RootOrder
       value: 3
       objectReference: {fileID: 0}
+    - target: {fileID: 114515739864972624, guid: 826ba059ae2cff143b801e46856a1c65,
+        type: 2}
+      propertyPath: dragImpact
+      value: 3
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 826ba059ae2cff143b801e46856a1c65, type: 2}
   m_IsPrefabParent: 0

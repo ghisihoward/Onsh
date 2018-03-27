@@ -51,12 +51,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e8e5665b5af566648b5b10965ab44391, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  minDragDistance: 10
   restZone: 0.1
   deathZone: 0.15
   difficultyAmp: 1
   accelAmp: 3
   minAccelDelta: 0.2
   modMaxRotation: 60
+  dragImpact: 3
+  dragDuration: 0.5
+  dragResistance: 100
   nudgeDuration: 0.5
   nudgeResistance: 100
   nudgeInterval: 3

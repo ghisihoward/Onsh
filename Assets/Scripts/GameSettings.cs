@@ -25,6 +25,15 @@ public class GameSettings : MonoBehaviour {
 	[Range (0f, 90f)]
 	public float modMaxRotation = 40f;
 
+	[Range (1f, 6f)]
+	public float dragImpact = 3f;
+
+	[Range (0f, 2f)]
+	public float dragDuration = 0.5f;
+
+	[Range (0f, 1000f)]
+	public float dragResistance = 100f;
+
 	[Range (0f, 2f)]
 	public float nudgeDuration = 0.5f;
 
@@ -34,5 +43,5 @@ public class GameSettings : MonoBehaviour {
 	[Range (0f, 5f)]
 	public float nudgeInterval = 3f;
 
-	public UsefulFunctions.Directions playerOriginalFacing = UsefulFunctions.Directions.Right;
+	public UsefulFunctions.Direction playerOriginalFacing = UsefulFunctions.Direction.Right;
 }

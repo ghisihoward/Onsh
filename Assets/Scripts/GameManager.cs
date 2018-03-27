@@ -28,7 +28,7 @@ public class GameManager : MonoBehaviour {
 
 			// TODO
 			// This random nudge thing should be refactored later.
-			playerScript.ReceiveNudge (1, UsefulFunctions.GetRandomBoolean ());
+			playerScript.ReceiveNudge (1, UsefulFunctions.GetRandomDirection ());
 			innerTimer = 0;
 		}
 
@@ -39,9 +39,9 @@ public class GameManager : MonoBehaviour {
 		// Menu
 	}
 
-	public void ReceiveDrag (UsefulFunctions.Directions direction){
+	public void MouseDrag (UsefulFunctions.Direction direction){
 		// TODO
 		// Act on Drag
-		Debug.Log ("Drag Received " + direction.ToString ());
+		playerScript.ReceiveDrag (settings.dragImpact, direction);
 	}
 }

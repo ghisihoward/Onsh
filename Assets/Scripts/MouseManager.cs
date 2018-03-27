@@ -40,9 +40,9 @@ public class MouseManager : MonoBehaviour {
 
 			if (Mathf.Abs (dragDistance) > (float)settings.minDragDistance) {
 				if (dragDistance > 0) {
-					gameManager.ReceiveDrag (UsefulFunctions.Directions.Right);
+					gameManager.MouseDrag (UsefulFunctions.Direction.Right);
 				} else if (dragDistance < 0) {
-					gameManager.ReceiveDrag (UsefulFunctions.Directions.Left);
+					gameManager.MouseDrag (UsefulFunctions.Direction.Left);
 				}
 			}
 		}
