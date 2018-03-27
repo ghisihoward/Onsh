@@ -7,7 +7,7 @@ public class Player : MonoBehaviour {
 	private GameObject playerSprite, settingsObject;
 	private GameSettings settings;
 
-	private bool nudged, dragged;
+	private bool nudged = false, dragged = false;
 
 	private float playerX, sideLength, marginLeft, marginRight;
 	private float speedDelta, rotationDelta;
@@ -39,8 +39,8 @@ public class Player : MonoBehaviour {
 			return;
 		}
 
-		this.BalancePlayer ();
-		this.RotatePlayer ();
+		this.BalancePlayer (playerX);
+		this.RotatePlayer (playerX);
 
 		// If nudged, move the player a set time.
 		if (nudged) {
@@ -53,7 +53,7 @@ public class Player : MonoBehaviour {
 		}
 	}
 
-	void BalancePlayer () {
+	void BalancePlayer (float playerX) {
 		// Increases Speed based on how far from the middle.
 		// z60x² + c = 0; (z for acceleration, c for value on 0)
 		// (-0.1) || (0.1) == 1 for minAccelDelta = 0.4;
@@ -85,7 +85,7 @@ public class Player : MonoBehaviour {
 		}
 	}
 
-	void RotatePlayer () {
+	void RotatePlayer (float playerX) {
 		// Rotate if position outside set boundaries.
 		if (UsefulFunctions.Between (marginLeft, -settings.restZone, playerX)) {
 			rotationDelta = 1 - (

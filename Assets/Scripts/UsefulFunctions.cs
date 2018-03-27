@@ -63,7 +63,7 @@ public static class UsefulFunctions {
 	/// <returns>The game object position after setting 0 as the center of the screen.</returns>
 	/// <param name="theObject">GameObject.</param>
 	public static float GetGameObjectXFromCenter (GameObject theObject) {
-		return GetGameObjectPosition (theObject) [0] - 0.5f;
+		return (float) System.Math.Round((decimal)(GetGameObjectPosition (theObject) [0] - 0.5f), 2);
 	}
 
 	/// <summary>
@@ -72,7 +72,7 @@ public static class UsefulFunctions {
 	/// <returns>The game object position after setting 0 as the center of the screen.</returns>
 	/// <param name="theObject">GameObject.</param>
 	public static float GetGameObjectYFromCenter (GameObject theObject) {
-		return GetGameObjectPosition (theObject) [1] - 0.5f;
+		return (float) System.Math.Round((decimal)(GetGameObjectPosition (theObject) [0] - 0.5f), 2);
 	}
 
 	/// <summary>
@@ -83,6 +83,10 @@ public static class UsefulFunctions {
 		return (Random.value > 0.5f);
 	}
 
+	/// <summary>
+	/// Returns a random direction.
+	/// </summary>
+	/// <returns><c>Left</c> or <c>Right</c>.</returns>
 	public static Direction GetRandomDirection () {
 		return  (Direction)Random.Range (0, 2);
 	}

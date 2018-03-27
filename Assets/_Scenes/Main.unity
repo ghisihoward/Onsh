@@ -108,6 +108,11 @@ NavMeshSettings:
     tileSize: 256
     accuratePlacement: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &152376201 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1224717899218056, guid: aa6168d77f0343f44b2b51d557940f4f,
+    type: 2}
+  m_PrefabInternal: {fileID: 925220312}
 --- !u!1001 &243610180
 Prefab:
   m_ObjectHideFlags: 0
@@ -147,14 +152,14 @@ Prefab:
       propertyPath: m_RootOrder
       value: 3
       objectReference: {fileID: 0}
-    - target: {fileID: 114515739864972624, guid: 826ba059ae2cff143b801e46856a1c65,
-        type: 2}
-      propertyPath: dragImpact
-      value: 3
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 826ba059ae2cff143b801e46856a1c65, type: 2}
   m_IsPrefabParent: 0
+--- !u!1 &919435618 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1027807820781476, guid: aa6168d77f0343f44b2b51d557940f4f,
+    type: 2}
+  m_PrefabInternal: {fileID: 925220312}
 --- !u!1001 &925220312
 Prefab:
   m_ObjectHideFlags: 0
@@ -162,6 +167,11 @@ Prefab:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 114698748470867042, guid: aa6168d77f0343f44b2b51d557940f4f,
+        type: 2}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 224659948393593022, guid: aa6168d77f0343f44b2b51d557940f4f,
         type: 2}
       propertyPath: m_LocalPosition.x
@@ -257,10 +267,34 @@ Prefab:
       propertyPath: m_Camera
       value: 
       objectReference: {fileID: 2071872843}
-    - target: {fileID: 114205636355420800, guid: aa6168d77f0343f44b2b51d557940f4f,
+    - target: {fileID: 1602168646527632, guid: aa6168d77f0343f44b2b51d557940f4f, type: 2}
+      propertyPath: m_Name
+      value: PlayButton
+      objectReference: {fileID: 0}
+    - target: {fileID: 114698748470867042, guid: aa6168d77f0343f44b2b51d557940f4f,
         type: 2}
-      propertyPath: m_MatchWidthOrHeight
-      value: 0
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114698748470867042, guid: aa6168d77f0343f44b2b51d557940f4f,
+        type: 2}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 114698748470867042, guid: aa6168d77f0343f44b2b51d557940f4f,
+        type: 2}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1849192583}
+    - target: {fileID: 114698748470867042, guid: aa6168d77f0343f44b2b51d557940f4f,
+        type: 2}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: PlayButton
+      objectReference: {fileID: 0}
+    - target: {fileID: 114698748470867042, guid: aa6168d77f0343f44b2b51d557940f4f,
+        type: 2}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: aa6168d77f0343f44b2b51d557940f4f, type: 2}
@@ -366,9 +400,25 @@ Prefab:
       propertyPath: m_RootOrder
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 114342302502169164, guid: e0041d757feba364e9d3d89f3bb122af,
+        type: 2}
+      propertyPath: playingHUD
+      value: 
+      objectReference: {fileID: 152376201}
+    - target: {fileID: 114342302502169164, guid: e0041d757feba364e9d3d89f3bb122af,
+        type: 2}
+      propertyPath: pauseHUD
+      value: 
+      objectReference: {fileID: 919435618}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: e0041d757feba364e9d3d89f3bb122af, type: 2}
   m_IsPrefabParent: 0
+--- !u!114 &1849192583 stripped
+MonoBehaviour:
+  m_PrefabParentObject: {fileID: 114342302502169164, guid: e0041d757feba364e9d3d89f3bb122af,
+    type: 2}
+  m_PrefabInternal: {fileID: 1435874225}
+  m_Script: {fileID: 11500000, guid: ca4f9e13f36b4a146878afc6e97921ab, type: 3}
 --- !u!1 &2071872839
 GameObject:
   m_ObjectHideFlags: 0

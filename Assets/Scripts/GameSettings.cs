@@ -4,9 +4,6 @@ using UnityEngine;
 
 public class GameSettings : MonoBehaviour {
 
-	[Range (0, 50)]
-	public float minDragDistance = 10f;
-
 	[Range (0f, 1f)]
 	public float restZone = 0.1f;
 
@@ -24,6 +21,9 @@ public class GameSettings : MonoBehaviour {
 
 	[Range (0f, 90f)]
 	public float modMaxRotation = 40f;
+
+	[Range (0, 50)]
+	public float minDragDistance = 10f;
 
 	[Range (1f, 6f)]
 	public float dragImpact = 3f;

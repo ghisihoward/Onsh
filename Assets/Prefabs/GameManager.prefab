@@ -51,3 +51,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ca4f9e13f36b4a146878afc6e97921ab, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playingHUD: {fileID: 0}
+  pauseHUD: {fileID: 0}

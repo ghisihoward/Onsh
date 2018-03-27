@@ -5,7 +5,7 @@ using UnityEngine;
 public class MouseManager : MonoBehaviour {
 
 	private bool lifted;
-	private Vector2 clickBegin, clickEnd;
+	private Vector2 clickStart, clickEnd;
 
 	private GameObject settingsObject;
 	private GameSettings settings;
@@ -27,7 +27,7 @@ public class MouseManager : MonoBehaviour {
 		lifted = false;
 
 		if (Input.GetMouseButtonDown (0)) {
-			clickBegin = CastRayToClick (Input.mousePosition.x, Input.mousePosition.y);
+			clickStart = CastRayToClick (Input.mousePosition.x, Input.mousePosition.y);
 		}
 
 		if (Input.GetMouseButtonUp (0)) {
@@ -36,15 +36,7 @@ public class MouseManager : MonoBehaviour {
 		}
 
 		if (lifted) {
-			float dragDistance = (clickEnd.x - clickBegin.x) * 100;
-
-			if (Mathf.Abs (dragDistance) > (float)settings.minDragDistance) {
-				if (dragDistance > 0) {
-					gameManager.MouseDrag (UsefulFunctions.Direction.Right);
-				} else if (dragDistance < 0) {
-					gameManager.MouseDrag (UsefulFunctions.Direction.Left);
-				}
-			}
+			EvalDragX (clickStart.x, clickEnd.x);
 		}
 	}
 
@@ -53,5 +45,17 @@ public class MouseManager : MonoBehaviour {
 			Camera.main.ScreenToViewportPoint(new Vector3 (mouseX, mouseY, 0)).x,
 			Camera.main.ScreenToViewportPoint(new Vector3 (mouseX, mouseY, 0)).y
 		);
+	}
+
+	private void EvalDragX (float start, float end) {
+		float dragDistance = (end - start) * 100;
+
+		if (Mathf.Abs (dragDistance) > (float)settings.minDragDistance) {
+			if (dragDistance > 0 && start < 0.3f) {
+				gameManager.MouseDrag (UsefulFunctions.Direction.Right);
+			} else if (dragDistance < 0 && start > 0.7) {
+				gameManager.MouseDrag (UsefulFunctions.Direction.Left);
+			}
+		}
 	}
 }
