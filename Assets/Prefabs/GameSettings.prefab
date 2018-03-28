@@ -52,7 +52,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   restZone: 0.1
-  deathZone: 0.15
+  deathZone: 0.1
   difficultyAmp: 1
   accelAmp: 3
   minAccelDelta: 0.2

@@ -152,6 +152,11 @@ Prefab:
       propertyPath: m_RootOrder
       value: 3
       objectReference: {fileID: 0}
+    - target: {fileID: 114515739864972624, guid: 826ba059ae2cff143b801e46856a1c65,
+        type: 2}
+      propertyPath: dragImpact
+      value: 4
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 826ba059ae2cff143b801e46856a1c65, type: 2}
   m_IsPrefabParent: 0
@@ -296,6 +301,26 @@ Prefab:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
+    - target: {fileID: 1852039495800600, guid: aa6168d77f0343f44b2b51d557940f4f, type: 2}
+      propertyPath: m_Name
+      value: PauseText1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1300911360760406, guid: aa6168d77f0343f44b2b51d557940f4f, type: 2}
+      propertyPath: m_Name
+      value: PauseText2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1235867221842108, guid: aa6168d77f0343f44b2b51d557940f4f, type: 2}
+      propertyPath: m_Name
+      value: PauseText3
+      objectReference: {fileID: 0}
+    - target: {fileID: 1713611519491744, guid: aa6168d77f0343f44b2b51d557940f4f, type: 2}
+      propertyPath: m_Name
+      value: PauseText4
+      objectReference: {fileID: 0}
+    - target: {fileID: 1107081824448538, guid: aa6168d77f0343f44b2b51d557940f4f, type: 2}
+      propertyPath: m_Name
+      value: PlayingText1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: aa6168d77f0343f44b2b51d557940f4f, type: 2}
   m_IsPrefabParent: 0
@@ -361,6 +386,17 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1396985813 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1300911360760406, guid: aa6168d77f0343f44b2b51d557940f4f,
+    type: 2}
+  m_PrefabInternal: {fileID: 925220312}
+--- !u!114 &1396985816 stripped
+MonoBehaviour:
+  m_PrefabParentObject: {fileID: 114857954355669244, guid: aa6168d77f0343f44b2b51d557940f4f,
+    type: 2}
+  m_PrefabInternal: {fileID: 925220312}
+  m_Script: {fileID: 708705254, guid: f70555f144d8491a825f0804e09c671c, type: 3}
 --- !u!1001 &1435874225
 Prefab:
   m_ObjectHideFlags: 0
@@ -410,9 +446,40 @@ Prefab:
       propertyPath: pauseHUD
       value: 
       objectReference: {fileID: 919435618}
+    - target: {fileID: 114342302502169164, guid: e0041d757feba364e9d3d89f3bb122af,
+        type: 2}
+      propertyPath: pauseText2Object
+      value: 
+      objectReference: {fileID: 1396985813}
+    - target: {fileID: 114342302502169164, guid: e0041d757feba364e9d3d89f3bb122af,
+        type: 2}
+      propertyPath: pauseText4Object
+      value: 
+      objectReference: {fileID: 1468218854}
+    - target: {fileID: 114342302502169164, guid: e0041d757feba364e9d3d89f3bb122af,
+        type: 2}
+      propertyPath: pauseText2
+      value: 
+      objectReference: {fileID: 1396985816}
+    - target: {fileID: 114342302502169164, guid: e0041d757feba364e9d3d89f3bb122af,
+        type: 2}
+      propertyPath: pauseText4
+      value: 
+      objectReference: {fileID: 1468218857}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: e0041d757feba364e9d3d89f3bb122af, type: 2}
   m_IsPrefabParent: 0
+--- !u!1 &1468218854 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1713611519491744, guid: aa6168d77f0343f44b2b51d557940f4f,
+    type: 2}
+  m_PrefabInternal: {fileID: 925220312}
+--- !u!114 &1468218857 stripped
+MonoBehaviour:
+  m_PrefabParentObject: {fileID: 114087841741492028, guid: aa6168d77f0343f44b2b51d557940f4f,
+    type: 2}
+  m_PrefabInternal: {fileID: 925220312}
+  m_Script: {fileID: 708705254, guid: f70555f144d8491a825f0804e09c671c, type: 3}
 --- !u!114 &1849192583 stripped
 MonoBehaviour:
   m_PrefabParentObject: {fileID: 114342302502169164, guid: e0041d757feba364e9d3d89f3bb122af,

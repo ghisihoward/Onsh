@@ -7,6 +7,7 @@ public class Player : MonoBehaviour {
 	private GameObject playerSprite, settingsObject;
 	private GameSettings settings;
 
+	public bool standing = true;
 	private bool nudged = false, dragged = false;
 
 	private float playerX, sideLength, marginLeft, marginRight;
@@ -20,27 +21,29 @@ public class Player : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		playerSprite = GameObject.Find ("PlayerSprite");
-		settingsObject = GameObject.Find ("GameSettings");
-		settings = settingsObject.GetComponent<GameSettings> ();
-		animator = gameObject.GetComponentInChildren <Animator> ();
+		this.playerSprite = GameObject.Find ("PlayerSprite");
+		this.settingsObject = GameObject.Find ("GameSettings");
+		this.settings = settingsObject.GetComponent<GameSettings> ();
+		this.animator = gameObject.GetComponentInChildren <Animator> ();
 
-		marginLeft = settings.deathZone - 0.5f;
-		marginRight = 0.5f - settings.deathZone;
-		sideLength = 0.5f - settings.deathZone - settings.restZone;
+		this.marginLeft = settings.deathZone - 0.5f;
+		this.marginRight = 0.5f - settings.deathZone;
+		this.sideLength = 0.5f - settings.deathZone - settings.restZone;
 	}
 	
 	// Update is called once per frame
 	void Update () {
+		// Verify if player has already fallen, return if positive.
+		if (!standing) return;
+
+		// Update playerX.
 		playerX = UsefulFunctions.GetGameObjectXFromCenter (this.gameObject);
 
-		if (!UsefulFunctions.Between (marginLeft, marginRight, playerX)) {
-			animator.enabled = false;
-			return;
-		}
+		// Verify if player is falling right now, if so, fire it's anim.
+		if (this.EvaluateFall ()) return;
 
-		this.BalancePlayer (playerX);
-		this.RotatePlayer (playerX);
+		this.BalancePlayer ();
+		this.RotatePlayer ();
 
 		// If nudged, move the player a set time.
 		if (nudged) {
@@ -51,9 +54,11 @@ public class Player : MonoBehaviour {
 		if (dragged) {
 			this.DragPlayer();
 		}
+
+		// Verify if the player fell.
 	}
 
-	void BalancePlayer (float playerX) {
+	private void BalancePlayer () {
 		// Increases Speed based on how far from the middle.
 		// z60x² + c = 0; (z for acceleration, c for value on 0)
 		// (-0.1) || (0.1) == 1 for minAccelDelta = 0.4;
@@ -85,20 +90,34 @@ public class Player : MonoBehaviour {
 		}
 	}
 
-	void RotatePlayer (float playerX) {
+	private void RotatePlayer () {
 		// Rotate if position outside set boundaries.
-		if (UsefulFunctions.Between (marginLeft, -settings.restZone, playerX)) {
-			rotationDelta = 1 - (
-			    (0.5f + playerX - settings.deathZone) / sideLength
-			);
-		} else if (UsefulFunctions.Between (settings.restZone, marginRight, playerX)) {
-			rotationDelta = -(playerX - settings.restZone) / sideLength;
+		if (UsefulFunctions.Between (-0.5f, -settings.restZone, playerX)) {
+			rotationDelta = 
+				Mathf.Clamp (
+					1 - ((0.5f + playerX - settings.deathZone) / sideLength), 0f, 1f
+				);
+		} else if (UsefulFunctions.Between (settings.restZone, 0.5f, playerX)) {
+			rotationDelta = 
+				Mathf.Clamp (
+					-(playerX - settings.restZone) / sideLength, -1f, 0f
+				);
 		} else {
 			rotationDelta = 0;
 		}
 
 		newRotation = settings.modMaxRotation * rotationDelta;
 		playerSprite.transform.eulerAngles = new Vector3 (0, 0, newRotation);
+	}
+
+	private bool EvaluateFall () {
+		if (!UsefulFunctions.Between (marginLeft, marginRight, playerX)) {
+			animator.enabled = false;
+			standing = false;
+			return true;
+		}
+
+		return false;
 	}
 
 	public void ReceiveNudge (float ammount, UsefulFunctions.Direction direction) {
@@ -138,5 +157,11 @@ public class Player : MonoBehaviour {
 			dragCounter = 0;
 			dragged = false;
 		}
+	}
+
+	public void ResetPlayer () {
+		transform.position = new Vector3 (0f, 0f, 0f);
+		animator.enabled = true;
+		standing = true;
 	}
 }
